@@ -37,16 +37,17 @@ actor{
     method = #get;
     max_response_bytes = null;
     headers = request_headers;
+    transform = null; 
     body = null;
     transform_context = ?transform_context;
   };
 
   Cycles.add(20_949_972_000);
 
-  let Http_response = Types.HttpResponsePayload = await ic.http_request(http_request);
+  let Http_response :Types.HttpResponsePayload = await ic.http_request(http_request);
 
   let response_body:Blob = Blob.fromArray(Http_response.body);
-  let decoded_text: Text = switch (Text.decode_UTF8(response_body)) {
+  let decoded_text: Text = switch (Text.decodeUtf8(response_body)) {
     case (null){"No value returned"};
     case (?y) {y};
 
@@ -64,7 +65,7 @@ actor{
           value = "default-src 'self'";
         },
         {
-          name = "Refer-policy"; 
+          name = "Refer-policy";
           value = "strict-origin";
         },
         {
@@ -84,6 +85,7 @@ actor{
           value = "nosniff";
         },
       ];
+    };
         transformed;
       
     };
