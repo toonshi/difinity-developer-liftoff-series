@@ -26,11 +26,11 @@ actor{
     let request_headers = [
       {name = "Host"; value = host # ":443" },
       {name = "User-Agent"; value = "exchange_rate_canister" },
-    ];
+      ];
      let transform_context: Types.transform_context = {
-    function = transform;
-    context = Blob.fromArray([]);
-  };
+     function = transform;
+     context = Blob.fromArray([]);
+      };
 
   let http_request: Types.HttpRequestArgs = {
     url = url;
@@ -40,7 +40,7 @@ actor{
     transform = null; 
     body = null;
     transform_context = ?transform_context;
-  };
+    };
 
   Cycles.add(20_949_972_000);
 
@@ -91,3 +91,5 @@ actor{
     };
    
 };
+
+
